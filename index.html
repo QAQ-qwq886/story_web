@@ -3,31 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>午後的圖書館相遇 - 互動故事</title>
+    <title>午後的圖書館遇見你 - 互動故事</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <canvas id="bgCanvas"></canvas>
-        
-        <header id="game-header">
-            <h1>午後的圖書館相遇</h1>
-            <p class="subtitle">一段關於書香與心跳的小故事</p>
+        <header>
+            <h1 id="game-title">午後的圖書館遇見你</h1>
+            <p id="game-intro">在充滿書香的午後，一段意想不到的邂逅正要展開...</p>
         </header>
 
-        <main id="game-container">
-            <section id="story-section">
-                <div class="card">
-                    <p id="story-text">載入中...</p>
+        <main id="game-card">
+            <div id="story-text">
                 </div>
-            </section>
-
-            <section id="choice-section">
-                </section>
+            
+            <div id="options-container">
+                </div>
         </main>
 
-        <footer id="game-footer">
-            <button id="restart-btn" class="hidden">重新開始故事</button>
+        <footer id="restart-area" class="hidden">
+            <button id="restart-btn" onclick="startGame()">回到故事起點</button>
         </footer>
     </div>
     <script src="script.js"></script>
