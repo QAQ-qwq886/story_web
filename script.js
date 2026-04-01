@@ -1,136 +1,82 @@
-
-// 故事資料節點
 const storyData = {
     start: {
-        text: "週五下午的圖書館格外安靜，你在轉角處不小心撞到了一位拿著厚重原文書的同學。對方抬起頭，是那位傳聞中的學霸學長/學姐。",
-        choices: [
-            { text: "趕緊道歉並幫忙撿書", nextNode: "help_pick" },
-            { text: "害羞地低頭跑開", nextNode: "run_away" }
+        text: "週五下午的圖書館安靜得出奇，你在窗邊找了一個位子。這時，校園名人「陽光學長/學姐」坐在了你的對面，對你微微一笑。\n\n你心跳漏了一拍，你會？",
+        options: [
+            { text: "也回一個微笑，繼續看書", next: "read_book" },
+            { text: "鼓起勇氣主動打招呼", next: "say_hi" }
         ]
     },
-    help_pick: {
-        text: "你幫忙撿起書時，發現書中夾著一張精緻的書籤。對方微笑著對你說：『謝謝，這張書籤對我很重要。』",
-        choices: [
-            { text: "稱讚書籤很漂亮", nextNode: "compliment" },
-            { text: "好奇問書籤的故事", nextNode: "ask_story" }
+    read_book: {
+        text: "你試著集中精神，但發現對方似乎在找東西。他/她輕聲問你：「同學，不好意思，這本書的續集好像在你那裡？」",
+        options: [
+            { text: "「啊，給你！」直接遞給他", next: "ending_friend" },
+            { text: "「想要嗎？先聊聊這本書吧」", next: "chat_deep" }
         ]
     },
-    run_away: {
-        text: "你跑了一段路後停下來，發現自己的學生證掉在剛才的地方了！你只好硬著頭皮回去找。",
-        choices: [
-            { text: "尷尬地走回去看", nextNode: "go_back" }
+    say_hi: {
+        text: "你小聲說了句「你好」。對方驚訝了一下，隨即開朗地說：「你也喜歡這本推理小說嗎？這是我最近的心頭好！」",
+        options: [
+            { text: "「超喜歡的！作者的伏筆很厲害」", next: "chat_deep" },
+            { text: "「只是隨便翻翻，其實我比較喜歡漫畫」", next: "ending_honest" }
         ]
     },
-    compliment: {
-        text: "對方聽了很高興，提議要請你喝杯飲料當作謝禮。你們在校園咖啡廳聊得很投緣。",
-        choices: [
-            { text: "交換通訊軟體", nextNode: "ending_love" },
-            { text: "禮貌致謝後離開", nextNode: "ending_friend" }
+    chat_deep: {
+        text: "你們從書本聊到了電影，從電影聊到了人生。時間飛快流逝，太陽快下山了。他/她拿出一張草稿紙，寫了一些東西...",
+        options: [
+            { text: "接過紙條看他在寫什麼", next: "ending_love" },
+            { text: "提議一起去吃晚餐續攤", next: "ending_love" }
         ]
     },
-    ask_story: {
-        text: "對方眼神閃過一絲懷念，說這是他最重要的靈感來源。他問你願不願意一起去圖書館露台聽他分享？",
-        choices: [
-            { text: "欣然答應", nextNode: "ending_best" },
-            { text: "委婉拒絕", nextNode: "ending_friend" }
-        ]
-    },
-    go_back: {
-        text: "回到現場，發現對方還站在那裡，手裡拿著你的學生證，笑著說：『你跑得真快，這還給你。』",
-        choices: [
-            { text: "臉紅著接過來", nextNode: "ending_love" },
-            { text: "趕快拿了就跑第二次", nextNode: "ending_miss" }
-        ]
-    },
-    // 結局節點
+    // 結局部分
     ending_love: {
-        text: "【結局：心動的起點】\n雖然只是小小的插曲，但你們交換了聯絡方式，一段浪漫的關係似乎正要開始。",
-        isEnding: true
-    },
-    ending_best: {
-        text: "【結局：靈魂伴侶】\n你們在露台聊了一整個下午，發現彼此的靈魂如此契合。這不僅是戀愛的開始，更是找到了生命中的知音。",
-        isEnding: true
+        text: "【結局：初戀的草稿紙】\n\n紙條上寫著一串聯絡電話，還畫了一個可愛的笑臉。那場午後的圖書館邂逅，成為了你們浪漫故事的序章。",
+        isEnd: true
     },
     ending_friend: {
-        text: "【結局：溫暖的朋友】\n你們成為了點頭之交，雖然沒有發展成戀人，但每次在校園遇見，那份溫馨的感覺依然存在。",
-        isEnding: true
+        text: "【結局：最熟悉的陌生人】\n\n他/她禮貌地道謝並拿走了書，回到位子上安靜閱讀。雖然沒有進一步發展，但你們成為了偶爾在圖書館點頭示意的好書友。",
+        isEnd: true
     },
-    ending_miss: {
-        text: "【結局：擦肩而過】\n因為太過害羞，你錯失了更進一步的機會。以後在校園遇見，你總會想起那個充滿書香的下午。",
-        isEnding: true
+    ending_honest: {
+        text: "【結局：意外的電波對位】\n\n「真的嗎？我也超愛看漫畫！」他/她興奮地拿出手機給你看收藏夾。你們在圖書館外聊了一整個下午的動漫，發現彼此意外地投緣！",
+        isEnd: true
     }
 };
 
-// 遊戲邏輯
-const storyText = document.getElementById('story-text');
-const choiceSection = document.getElementById('choice-section');
-const restartBtn = document.getElementById('restart-btn');
+const storyTextElement = document.getElementById('story-text');
+const optionsContainer = document.getElementById('options-container');
+const restartArea = document.getElementById('restart-area');
+const gameCard = document.getElementById('game-card');
+
+function startGame() {
+    showNode('start');
+    restartArea.classList.add('hidden');
+}
 
 function showNode(nodeKey) {
     const node = storyData[nodeKey];
-    storyText.innerText = node.text;
-    choiceSection.innerHTML = '';
+    
+    // 清除舊動畫
+    gameCard.style.animation = 'none';
+    gameCard.offsetHeight; // 觸發重繪
+    gameCard.style.animation = null;
 
-    if (node.isEnding) {
-        restartBtn.classList.remove('hidden');
+    // 更新文字
+    storyTextElement.innerText = node.text;
+    
+    // 清空並生成選項
+    optionsContainer.innerHTML = '';
+    
+    if (node.isEnd) {
+        restartArea.classList.remove('hidden');
     } else {
-        restartBtn.classList.add('hidden');
-        node.choices.forEach(choice => {
-            const btn = document.createElement('button');
-            btn.innerText = choice.text;
-            btn.onclick = () => showNode(choice.nextNode);
-            choiceSection.appendChild(btn);
+        node.options.forEach(option => {
+            const button = document.createElement('button');
+            button.innerText = option.text;
+            button.onclick = () => showNode(option.next);
+            optionsContainer.appendChild(button);
         });
     }
 }
 
-restartBtn.onclick = () => showNode('start');
-
-// Canvas 裝飾背景（飄落的小愛心/粒子）
-const canvas = document.getElementById('bgCanvas');
-const ctx = canvas.getContext('2d');
-let particles = [];
-
-function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
-class Particle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 5 + 2;
-        this.speed = Math.random() * 1 + 0.5;
-        this.opacity = Math.random() * 0.5;
-    }
-    update() {
-        this.y -= this.speed;
-        if (this.y < -10) this.y = canvas.height + 10;
-    }
-    draw() {
-        ctx.fillStyle = `rgba(255, 175, 189, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-}
-
-function initCanvas() {
-    resize();
-    particles = Array.from({ length: 50 }, () => new Particle());
-    animate();
-}
-
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-        p.update();
-        p.draw();
-    });
-    requestAnimationFrame(animate);
-}
-
-window.addEventListener('resize', resize);
-initCanvas();
-showNode('start');
+// 初始化遊戲
+window.onload = startGame;
